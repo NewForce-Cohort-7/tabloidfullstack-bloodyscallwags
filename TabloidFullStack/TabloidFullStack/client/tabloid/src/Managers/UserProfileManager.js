@@ -1,9 +1,14 @@
-
+import React from "react";
 
 
 
 
 const apiUrl = "https://localhost:5001";
+
+export const getAllUserProfiles = () => {
+  return fetch(`${apiUrl}/api/userprofile`)
+  .then((res) => res.json())
+}
 
 export const login = (userObject) => {
   return fetch(`${apiUrl}/api/userprofile/getbyemail?email=${userObject.email}`)
