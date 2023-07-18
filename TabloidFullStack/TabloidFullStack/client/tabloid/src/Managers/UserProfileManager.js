@@ -14,9 +14,14 @@ export const login = (userObject) => {
   return fetch(`${apiUrl}/api/userprofile/getbyemail?email=${userObject.email}`)
   .then((r) => r.json())
     .then((userProfile) => {
-      if(userProfile.id){
-        localStorage.setItem("userProfile", JSON.stringify(userProfile));
-        return userProfile
+      // if(userProfile.id){
+        // localStorage.setItem("userProfile", JSON.stringify(userProfile));
+        // return userProfile
+       if(userProfile.id){
+        const isAdmin = userProfile.userTypeId === 1;
+        const updatedProfile = { id: userProfile.id, admin: isAdmin };
+        localStorage.setItem("userProfile", JSON.stringify(updatedProfile));
+        return updatedProfile;
       }
       else{
         return undefined

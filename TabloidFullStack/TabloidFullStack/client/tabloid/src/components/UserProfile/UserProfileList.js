@@ -23,9 +23,9 @@ export const UserProfileList = () => {
                     {profiles.map((profile) => (
                         <tr key={profile.id}>
                             <td>{profile.id}</td>
-                            <td>{profile.firstName} {profile.lastName}</td>
+                            <td>{profile.fullName}</td>
                             <td>{profile.displayName}</td>
-                            {/* <td>{profile.userType}</td> */}
+                            <td>{profile.userType.name}</td>
                         </tr>
                     ))}
             </table>
