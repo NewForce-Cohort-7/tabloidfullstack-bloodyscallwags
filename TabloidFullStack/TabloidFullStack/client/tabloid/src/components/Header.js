@@ -15,6 +15,9 @@ export default function Header({isLoggedIn, setIsLoggedIn}) {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
+  const localUser = localStorage.getItem("userProfile")
+  const userObject = JSON.parse(localUser)
+
   return (
     <div>
       <Navbar color="light" light expand="md">
@@ -28,10 +31,11 @@ export default function Header({isLoggedIn, setIsLoggedIn}) {
               <NavItem>
                 <NavLink tag={RRNavLink} to="/">Home</NavLink>
               </NavItem>
-
+            {userObject.admin &&
             <NavItem>
             <NavLink tag={RRNavLink} to="/userProfilesList">User Profiles</NavLink>
             </NavItem>
+            }
             </div>
             }
           </Nav>

@@ -20,7 +20,7 @@ namespace TabloidFullStack.Repositories
                                ut.Name AS UserTypeName
                           FROM UserProfile up
                                LEFT JOIN UserType ut on up.UserTypeId = ut.Id
-                        ORDER BY up.CreateDateTime";
+                        ORDER BY up.DisplayName";
 
                     var reader = cmd.ExecuteReader();
 
