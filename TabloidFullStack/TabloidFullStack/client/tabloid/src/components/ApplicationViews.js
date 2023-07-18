@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Hello from "./Hello";
 import { UserProfileList } from "./UserProfile/UserProfileList";
 
+//original code - keeping for safety
 // export default function ApplicationViews() {
 
 //  return(
@@ -15,6 +16,7 @@ import { UserProfileList } from "./UserProfile/UserProfileList";
  
 // }
 
+//modified code of ApplicationViews to have different views for routes; might need to separate this later depending on how messy it gets
 const ApplicationViews = () => {
   const localUser = localStorage.getItem("userProfile")
   const userObject = JSON.parse(localUser)

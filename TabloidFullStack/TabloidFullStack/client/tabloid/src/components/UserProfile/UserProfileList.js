@@ -13,6 +13,7 @@ export const UserProfileList = () => {
         getProfiles();
     }, []);
 
+    //returns a list of all user profiles
     return (
         <Table striped size="sm" className="table_index" id="userProfileTable">
             <thead>
