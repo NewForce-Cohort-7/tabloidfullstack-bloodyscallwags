@@ -50,7 +50,10 @@ export const register = (userObject, password) => {
     });
 };
 
-
+export const getUser = (id) => { //http GET by id parameter 
+  return fetch(`${apiUrl}/api/userprofile/${id}`)
+  .then((res) => res.json());
+}
 
 
 
