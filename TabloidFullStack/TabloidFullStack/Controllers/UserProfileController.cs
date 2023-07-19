@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using TabloidFullStack.Models;
 using TabloidFullStack.Repositories;
 
