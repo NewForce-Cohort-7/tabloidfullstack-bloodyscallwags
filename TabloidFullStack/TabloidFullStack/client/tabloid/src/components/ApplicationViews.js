@@ -22,7 +22,7 @@ const ApplicationViews = () => {
   const localUser = localStorage.getItem("userProfile")
   const userObject = JSON.parse(localUser)
 
-  if (userObject.admin) {
+  if (userObject?.admin) {
     return(
       <Routes>
         <Route path="/" element={<Hello />} />
