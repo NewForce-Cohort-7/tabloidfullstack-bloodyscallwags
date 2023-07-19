@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { getAllCategories } from "../Managers/CategoryManager";
+import { Table } from "reactstrap";
 
-const CategoryList = () => {
+export const CategoryList = () => {
   const [categories, setCategories] = useState([]);
 
   const getCategories = () => {
@@ -12,21 +13,26 @@ const CategoryList = () => {
     getCategories();
   }, []); 
 
-
-
+  //returns list of all categories
   return (  
-    <div>
-      {categories.map((category) => (
-        <div key={category.id}>
-          <img src={category.imageUrl} alt={category.title} />
-          <p>
-            <strong>{category.title}</strong>
-          </p>
-          <p>{category.caption}</p>
-        </div>
-      ))}
-    </div>
-  );
-};
+    <Table striped size="sm" className="table1_index" id="categoryTable">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Category Name</th>
+        </tr>
+        </thead>
+        <tbody>
+            {categories.map((category) => (
+                <tr key={category.id}>
+                    <th scope="row">{category.id}</th>
+                    <td>{category.name}</td>
+                </tr>
+            ))}
+    </tbody>
+</Table>
+);
 
+
+};
 export default CategoryList;

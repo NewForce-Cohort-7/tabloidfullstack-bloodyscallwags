@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Hello from "./Hello";
 import { UserProfileList } from "./UserProfile/UserProfileList";
+import  CategoryList  from "./CategoryList";
 
 //original code - keeping for safety
 // export default function ApplicationViews() {
@@ -21,12 +22,13 @@ const ApplicationViews = () => {
   const localUser = localStorage.getItem("userProfile")
   const userObject = JSON.parse(localUser)
 
-  if (userObject.admin) {
+  if (userObject?.admin) {
     return(
       <Routes>
         <Route path="/" element={<Hello />} />
 
           <Route path="/userProfilesList" element={<UserProfileList />} />
+          <Route path="/categoriesList" element= {<CategoryList />} />
       </Routes>
     );
   }
@@ -34,7 +36,7 @@ const ApplicationViews = () => {
     return(
       <Routes>
         <Route path="/" element={<Hello />} />
-        <Route path="/" element= {<CategoryList />} />
+ 
 
       </Routes>
    );
