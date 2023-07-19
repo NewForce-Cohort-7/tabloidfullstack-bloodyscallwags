@@ -36,6 +36,7 @@ export default function Header({isLoggedIn, setIsLoggedIn}) {
             {userObject?.admin &&
             <NavItem>
             <NavLink tag={RRNavLink} to="/userProfilesList">User Profiles</NavLink>
+              <NavLink tag={RRNavLink} to="/categoriesList">Category Management</NavLink>
             </NavItem>
             }
             </div>
