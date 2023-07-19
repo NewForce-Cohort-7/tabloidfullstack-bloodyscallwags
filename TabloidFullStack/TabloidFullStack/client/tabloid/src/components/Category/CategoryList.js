@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getAllCategories } from "../Managers/CategoryManager";
+import { getAllCategories } from "../../Managers/CategoryManager";
 import { Table } from "reactstrap";
 
 export const CategoryList = () => {
