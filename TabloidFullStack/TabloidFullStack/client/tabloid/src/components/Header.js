@@ -15,6 +15,10 @@ export default function Header({isLoggedIn, setIsLoggedIn}) {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
+  //to use for verifying what userType the account is
+  const localUser = localStorage.getItem("userProfile")
+  const userObject = JSON.parse(localUser)
+
   return (
     <div>
       <Navbar color="light" light expand="md">
@@ -24,11 +28,18 @@ export default function Header({isLoggedIn, setIsLoggedIn}) {
           <Nav className="mr-auto" navbar>
             { /* When isLoggedIn === true, we will render the Home link */ }
             {isLoggedIn &&
+             <div style={{display: 'flex'}}>
               <NavItem>
                 <NavLink tag={RRNavLink} to="/">Home</NavLink>
                 <NavLink tag={RRNavLink} to="/categories">Category Management</NavLink>
               </NavItem>
-              
+            {/* If a user is an admin, they will see the link to UserProfiles in the NavBar - might need to clean this up later. */}
+            {userObject.admin &&
+            <NavItem>
+            <NavLink tag={RRNavLink} to="/userProfilesList">User Profiles</NavLink>
+            </NavItem>
+            }
+            </div>
             }
           </Nav>
           <Nav navbar>
