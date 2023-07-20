@@ -1,8 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-using Microsoft.Extensions.Configuration;
-using TabloidFullStack.Models;
+﻿using TabloidFullStack.Models;
 using TabloidFullStack.Utils;
 
 namespace TabloidFullStack.Repositories
@@ -19,11 +15,12 @@ namespace TabloidFullStack.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT p.Id, p.Title, p.Content, p.ImageLocation, p.CreateDateTime, p.PublishDateTime,             p.IsApproved, p.CategoryId, p.UserProfileId, up.Id, up.DisplayName,  up.FirstName, up.LastName, up.ImageLocation AS AuthorImage, up.UserTypeId
+                        SELECT p.Id, p.Title, p.Content, p.ImageLocation, p.CreateDateTime, p.PublishDateTime, p.IsApproved, p.CategoryId, p.UserProfileId, up.Id AS AuthorId, up.DisplayName, up.FirstName, up.LastName, up.ImageLocation AS AuthorImage, up.UserTypeId, up.email, c.Name AS CategoryName
                         FROM Post p
                                LEFT JOIN UserProfile up on up.Id = p.UserProfileId
-                        WHERE p.IsApproved = 'true'
-                        ORDER BY p.Id
+                               LEFT JOIN Category c on c.Id = p.CategoryId
+                        WHERE p.IsApproved = 'true' AND p.PublishDateTime < SYSDATETIME()
+                        ORDER BY p.PublishDateTime DESC
                         ";
 
                     var reader = cmd.ExecuteReader();
@@ -42,10 +39,17 @@ namespace TabloidFullStack.Repositories
                             IsApproved = DbUtils.IsDbNull(reader, "IsApproved"),
                             CategoryId = DbUtils.GetInt(reader, "CategoryId"),
                             UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
+                            Category = new Category()
+                            {
+                                Id = DbUtils.GetInt(reader, "CategoryId"),
+                                Name = DbUtils.GetString(reader, "CategoryName"),
+                            },
                             UserProfile = new UserProfile()
                             {
+                                Id = DbUtils.GetInt(reader, "AuthorId"),
                                 FirstName = DbUtils.GetString(reader, "FirstName"),
                                 LastName = DbUtils.GetString(reader, "LastName"),
+                                Email = DbUtils.GetString(reader, "Email"),
                                 DisplayName = DbUtils.GetString(reader, "DisplayName"),
                                 ImageLocation = DbUtils.GetString(reader, "AuthorImage"),
                                 UserTypeId = DbUtils.GetInt(reader, "UserTypeId")
