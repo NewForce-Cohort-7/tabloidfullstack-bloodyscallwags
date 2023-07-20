@@ -9,11 +9,11 @@ export const getAllCategories = () => {
 
 //Create new category
 export const addCategory = (singleCategory) => { 
-    return fetch(`${apiUrl}/api/Category/AddCategory`), {
+    return fetch(`${apiUrl}/api/Category`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(singleCategory),
-    };
+    });
   };

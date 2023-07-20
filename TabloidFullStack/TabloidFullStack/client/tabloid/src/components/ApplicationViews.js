@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Hello from "./Hello";
 import { UserProfileList } from "./UserProfile/UserProfileList";
 import  CategoryList  from "./Category/CategoryList";
+import { CategoryForm } from "./Category/CategoryForm";
 
 //original code - keeping for safety
 // export default function ApplicationViews() {
@@ -29,6 +30,7 @@ const ApplicationViews = () => {
 
           <Route path="/userProfilesList" element={<UserProfileList />} />
           <Route path="/categoriesList" element= {<CategoryList />} />
+          <Route path="category/create" element={ <CategoryForm />} />
       </Routes>
     );
   }

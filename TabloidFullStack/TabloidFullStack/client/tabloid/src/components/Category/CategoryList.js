@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { getAllCategories } from "../../Managers/CategoryManager";
-import { Table } from "reactstrap";
+import { Table, Button } from "reactstrap";
+
+import { Link } from "react-router-dom";
 
 export const CategoryList = () => {
   const [categories, setCategories] = useState([]);
@@ -15,22 +17,27 @@ export const CategoryList = () => {
 
   //returns list of all categories
   return (  
-    <Table striped size="sm" className="table1_index" id="categoryTable">
-    <thead>
-        <tr>
+    <>
+    <Link to="/category/create"> 
+      <Button color="primary">Add Category</Button>
+    </Link>
+   <Table striped size="sm" className="table1_index" id="categoryTable">
+        <thead>
+          <tr>
             <th>Id</th>
             <th>Category Name</th>
-        </tr>
+          </tr>
         </thead>
         <tbody>
-            {categories.map((category) => (
-                <tr key={category.id}>
-                    <th scope="row">{category.id}</th>
-                    <td>{category.name}</td>
-                </tr>
-            ))}
-    </tbody>
-</Table>
+          {categories.map((category) => (
+            <tr key={category.id}>
+              <th scope="row">{category.id}</th>
+              <td>{category.name}</td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+      </>
 );
 
 
