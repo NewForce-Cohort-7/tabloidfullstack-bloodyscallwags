@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
 using TabloidFullStack.Models;
 using TabloidFullStack.Repositories;
 
@@ -35,5 +36,25 @@ namespace TabloidFullStack.Controllers
             }
             return Ok(category);
         }
+
+        [HttpPost]
+        public IActionResult Post(Category category)
+        {
+            _categoryRepo.AddCategory(category);
+            return CreatedAtAction("Get", new { id = category.Id }, category);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, Category category)
+        {
+            if (id != category.Id)
+            {
+                return BadRequest();
+            }
+
+            _categoryRepo.UpdateCategory(category);
+            return NoContent();
+        }
+
     }
 }
