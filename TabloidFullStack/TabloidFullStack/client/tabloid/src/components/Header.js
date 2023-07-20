@@ -52,6 +52,9 @@ export default function Header({isLoggedIn, setIsLoggedIn}) {
                       setIsLoggedIn(false)
                     }}>Logout</a>
                 </NavItem>
+                <NavItem>
+                <NavLink tag={RRNavLink} to="/tag"> Tag </NavLink>
+                </NavItem>
               </>
             }
             {!isLoggedIn &&
