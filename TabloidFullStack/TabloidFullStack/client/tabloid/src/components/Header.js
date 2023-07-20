@@ -32,8 +32,11 @@ export default function Header({isLoggedIn, setIsLoggedIn}) {
               <NavItem>
                 <NavLink tag={RRNavLink} to="/">Home</NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink tag={RRNavLink} to="/posts">Posts</NavLink>
+              </NavItem>
             {/* If a user is an admin, they will see the link to UserProfiles in the NavBar - might need to clean this up later. */}
-            {userObject.admin &&
+            {userObject?.admin &&
             <NavItem>
             <NavLink tag={RRNavLink} to="/userProfilesList">User Profiles</NavLink>
             </NavItem>
