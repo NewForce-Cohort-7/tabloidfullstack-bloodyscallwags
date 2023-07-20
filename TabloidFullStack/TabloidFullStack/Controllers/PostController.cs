@@ -18,7 +18,7 @@ namespace TabloidFullStack.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_postRepository.GetAll());
+            return Ok(_postRepository.GetAllApprovedPosts());
         }
 
     }

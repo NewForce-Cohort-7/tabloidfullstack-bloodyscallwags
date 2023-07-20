@@ -11,7 +11,7 @@ namespace TabloidFullStack.Repositories
     {
         public PostRepository(IConfiguration configuration) : base(configuration) { }
 
-        public List<Post> GetAll()
+        public List<Post> GetAllApprovedPosts()
         {
             using (var conn = Connection)
             {
@@ -19,10 +19,11 @@ namespace TabloidFullStack.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT p.Id, p. Title, p.Content, p.ImageLocation, p.CreateDateTime, p.PublishDateTime, p.IsApproved, p.CategoryId, p.UserProfileId, up.Author AS 
+                        SELECT p.Id, p.Title, p.Content, p.ImageLocation, p.CreateDateTime, p.PublishDateTime,             p.IsApproved, p.CategoryId, p.UserProfileId, up.Id, up.DisplayName,  up.FirstName, up.LastName, up.ImageLocation AS AuthorImage, up.UserTypeId
                         FROM Post p
-                            LEFT JOIN UserProfile up on up.Id = p.UserProfileId
-                        ORDER BY p.PublishDateTime
+                               LEFT JOIN UserProfile up on up.Id = p.UserProfileId
+                        WHERE p.IsApproved = 'true'
+                        ORDER BY p.Id
                         ";
 
                     var reader = cmd.ExecuteReader();
@@ -43,13 +44,10 @@ namespace TabloidFullStack.Repositories
                             UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
                             UserProfile = new UserProfile()
                             {
-                                Id = DbUtils.GetInt(reader, "Id"),
                                 FirstName = DbUtils.GetString(reader, "FirstName"),
                                 LastName = DbUtils.GetString(reader, "LastName"),
                                 DisplayName = DbUtils.GetString(reader, "DisplayName"),
-                                Email = DbUtils.GetString(reader, "Email"),
-                                CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
-                                ImageLocation = DbUtils.GetString(reader, "ImageLocation"),
+                                ImageLocation = DbUtils.GetString(reader, "AuthorImage"),
                                 UserTypeId = DbUtils.GetInt(reader, "UserTypeId")
                             }
                         });
