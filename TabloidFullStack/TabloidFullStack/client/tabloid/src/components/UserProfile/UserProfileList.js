@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { getAllUserProfiles } from "../../Managers/UserProfileManager";
-import { Table } from "reactstrap";
+import { NavLink, Table } from "reactstrap";
 import "./UserProfile.css"
+import { Link } from "react-router-dom";
 
 export const UserProfileList = () => {
     const [profiles, setProfiles] = useState([]);
@@ -28,7 +29,7 @@ export const UserProfileList = () => {
                     {profiles.map((profile) => (
                         <tr key={profile.id}>
                             <th scope="row">{profile.id}</th>
-                            <td>{profile.fullName}</td>
+                            <NavLink href={`/userprofile/${profile.id}`} id="userDetailsLink"><td><u>{profile.fullName}</u></td></NavLink>
                             <td>{profile.displayName}</td>
                             <td>{profile.userType.name}</td>
                         </tr>
