@@ -2,7 +2,11 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Hello from "./Hello";
 import { UserProfileList } from "./UserProfile/UserProfileList";
-import  CategoryList  from "./CategoryList";
+import { Posts } from "./Posts/PostList";
+import  TagList  from "./tags/TagList";
+import  TagForm  from "./tags/TagForm";
+import  CategoryList  from "./Category/CategoryList";
+import { CategoryForm } from "./Category/CategoryForm";
 
 //original code - keeping for safety
 // export default function ApplicationViews() {
@@ -28,7 +32,12 @@ const ApplicationViews = () => {
         <Route path="/" element={<Hello />} />
 
           <Route path="/userProfilesList" element={<UserProfileList />} />
+          <Route path="/posts" element={<Posts />} />
           <Route path="/categoriesList" element= {<CategoryList />} />
+          <Route path="/tag" element= {<TagList />} />
+          <Route path="/tag-form" element= {<TagForm />} />
+          
+          <Route path="category/create" element={ <CategoryForm />} />
       </Routes>
     );
   }
