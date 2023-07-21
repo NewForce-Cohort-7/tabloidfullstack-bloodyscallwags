@@ -117,5 +117,9 @@ namespace TabloidFullStack.Repositories
                 }
             }
         }
+
+        
+
+        
     }
 }
