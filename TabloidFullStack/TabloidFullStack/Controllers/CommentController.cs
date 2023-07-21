@@ -11,11 +11,13 @@ namespace TabloidFullStack.Controllers
     public class CommentController : ControllerBase
     {
         private readonly ICommentRepository _commentRepository;
-        //private readonly IUserRepository _userRepository;
-        public CommentController(ICommentRepository commentRepository)
+        private readonly IPostRepository _postRepository;
+        private readonly IUserRepository _userRepository;
+        public CommentController(ICommentRepository commentRepository, IUserRepository userRepository, IPostRepository postRepository)
         {
             _commentRepository = commentRepository;
-            //_userRepository = userRepository;
+            _userRepository = userRepository;
+            _postRepository = postRepository;
         }
 
         [HttpGet("GetByPostId/{id}")]

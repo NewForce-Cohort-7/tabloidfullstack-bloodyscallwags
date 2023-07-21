@@ -7,6 +7,7 @@ import  TagList  from "./tags/TagList";
 import  TagForm  from "./tags/TagForm";
 import  CategoryList  from "./Category/CategoryList";
 import { CategoryForm } from "./Category/CategoryForm";
+import { CommentList } from "./Comment/CommentList";
 
 //original code - keeping for safety
 // export default function ApplicationViews() {
@@ -36,8 +37,9 @@ const ApplicationViews = () => {
           <Route path="/categoriesList" element= {<CategoryList />} />
           <Route path="/tag" element= {<TagList />} />
           <Route path="/tag-form" element= {<TagForm />} />
-          
-          <Route path="category/create" element={ <CategoryForm />} />
+          <Route path="/commentList" element= {<CommentList />} />
+          <Route path="/comment" element= {<Comment />} />
+            <Route path="category/create" element={ <CategoryForm />} />
       </Routes>
     );
   }
