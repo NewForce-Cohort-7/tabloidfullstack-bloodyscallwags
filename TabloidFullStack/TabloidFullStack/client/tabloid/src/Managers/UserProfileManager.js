@@ -22,6 +22,7 @@ export const login = (userObject) => {
         //modified code by Kiersten - allows for .admin to be used in other .js files for if/else statements
         if(userProfile.id){
         const isAdmin = userProfile.userTypeId === 1;
+        const isActive = userProfile.isActive === 1;
         const updatedProfile = { id: userProfile.id, admin: isAdmin };
         localStorage.setItem("userProfile", JSON.stringify(updatedProfile));
         return updatedProfile;

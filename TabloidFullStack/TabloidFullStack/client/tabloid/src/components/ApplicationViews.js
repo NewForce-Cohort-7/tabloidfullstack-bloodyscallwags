@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Hello from "./Hello";
 import { UserProfileList } from "./UserProfile/UserProfileList";
+import { UserProfileDetails } from "./UserProfile/UserProfileDetails";
 import { Posts } from "./Posts/PostList";
 import  TagList  from "./tags/TagList";
 import  TagForm  from "./tags/TagForm";
@@ -30,7 +31,7 @@ const ApplicationViews = () => {
     return(
       <Routes>
         <Route path="/" element={<Hello />} />
-
+          <Route path="/userprofile/:id" element={<UserProfileDetails />} />
           <Route path="/userProfilesList" element={<UserProfileList />} />
           <Route path="/posts" element={<Posts />} />
           <Route path="/categoriesList" element= {<CategoryList />} />
