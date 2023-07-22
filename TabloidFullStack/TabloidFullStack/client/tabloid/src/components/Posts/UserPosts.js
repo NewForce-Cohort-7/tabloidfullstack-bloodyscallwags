@@ -1,28 +1,31 @@
 import React, { useState, useEffect } from "react";
-import { getAllApprovedPosts } from "../../Managers/PostManager";
+import { getUserPosts } from "../../Managers/PostManager";
 import { Table } from "reactstrap";
+import { useParams } from "react-router-dom";
 import "./Posts.css"
 import { EyeFill } from "react-bootstrap-icons";
 import { PencilFill} from "react-bootstrap-icons"
 import { TrashFill} from "react-bootstrap-icons"
 
 
-export const AllPosts = () => {
-    const [posts, setPosts] = useState([]);
-    const getPosts = () => {
-        getAllApprovedPosts().then(allPosts => setPosts(allPosts));
-    };
+export const UserPosts = () => {
+    const [userPosts, setUserPosts] = useState([]);
+    const { id } = useParams();
 
+        console.log(id)
     useEffect(() => {
-        getPosts();
-    }, []);
+        getUserPosts(id)
+            .then((data) => 
+            {setUserPosts(data);
+            })
+            .catch((error) => {
+                console.log("Error fetching user posts:", error);
+            });
+    }, [id]);
 
     //returns a list of all user profiles
     return (
     <>
-    <a href="/users/:id" class="btn btn-outline-secondary mx-1" title="Details">
-                            My Posts
-                        </a>
     <div class="container pt-5">
         <Table striped class="table table-striped">
             <thead>
@@ -35,7 +38,7 @@ export const AllPosts = () => {
                 </tr>
                 </thead>
                 <tbody>
-                    {posts.map((post) => (
+                    {userPosts.map((post) => (
                         <tr key={post.id}>
                             <td>{post.userProfile.fullName}</td>
                             <td>{post.title}</td>
