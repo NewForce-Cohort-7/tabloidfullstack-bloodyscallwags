@@ -20,11 +20,11 @@ export const AllPosts = () => {
     //returns a list of all user profiles
     return (
     <>
-    <a href="/users/:id" class="btn btn-outline-secondary mx-1" title="Details">
+    <a href="/userposts/:id" className="btn btn-outline-secondary mx-1" title="Details">
                             My Posts
                         </a>
-    <div class="container pt-5">
-        <Table striped class="table table-striped">
+    <div className="container pt-5">
+        <Table striped className="table table-striped">
             <thead>
                 <tr>
                     <th>Author</th>
@@ -42,14 +42,14 @@ export const AllPosts = () => {
                             <td>{post.category.name}</td>
                             <td>{post.publishDateTime}</td>
                     <td>
-                        <div class="function-container">
-                        <a href="/" class="btn btn-outline-secondary mx-1" title="Details">
+                        <div className="function-container">
+                        <a href="/" className="btn btn-outline-secondary mx-1" title="Details">
                             <EyeFill />
                         </a>
-                        <a href="/" class="btn btn-outline-secondary mx-1" title="Edit">
+                        <a href="/" className="btn btn-outline-secondary mx-1" title="Edit">
                             <PencilFill />
                         </a>
-                        <a href="/" class="btn btn-outline-secondary mx-1" title="Delete">
+                        <a href="/" className="btn btn-outline-secondary mx-1" title="Delete">
                             <TrashFill/>
                         </a>
                         </div>

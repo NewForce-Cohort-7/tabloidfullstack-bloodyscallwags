@@ -34,7 +34,7 @@ const ApplicationViews = () => {
 
           <Route path="/userProfilesList" element={<UserProfileList />} />
           <Route path="/posts" element={<AllPosts />} />
-          <Route path="/users/:id" element={<UserPosts />} />
+          <Route path="/userposts/:id" element={<UserPosts />} />
           <Route path="/categoriesList" element= {<CategoryList />} />
           <Route path="/tag" element= {<TagList />} />
           <Route path="/tag-form" element= {<TagForm />} />

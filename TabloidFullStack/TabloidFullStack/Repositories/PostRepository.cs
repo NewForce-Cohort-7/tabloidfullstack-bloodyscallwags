@@ -44,7 +44,7 @@ namespace TabloidFullStack.Repositories
 
 
 
-        public List<Post> GetPostsById(int id)
+        public List<Post> GetPostsByUserId(int id)
         {
             using (var conn = Connection)
             {
@@ -61,7 +61,7 @@ namespace TabloidFullStack.Repositories
                         ORDER BY p.PublishDateTime DESC
                         ";
 
-                    cmd.Parameters.AddWithValue("@id", id);
+                    DbUtils.AddParameter(cmd, "@Id", id);
 
                     var reader = cmd.ExecuteReader();
 
