@@ -9,20 +9,7 @@ import  TagForm  from "./tags/TagForm";
 import  CategoryList  from "./Category/CategoryList";
 import { CategoryForm } from "./Category/CategoryForm";
 
-//original code - keeping for safety
-// export default function ApplicationViews() {
-
-//  return(
-//       <Routes>
-//         <Route path="/" element={<Hello />} />
-
-//           <Route path="/userProfilesList" element={<UserProfileList />} />
-//       </Routes>
-//    );
- 
-// }
-
-//modified code of ApplicationViews to have different views for routes; might need to separate this later depending on how messy it gets
+//modified code of ApplicationViews to have different views for routes
 const ApplicationViews = () => {
   const localUser = localStorage.getItem("userProfile")
   const userObject = JSON.parse(localUser)

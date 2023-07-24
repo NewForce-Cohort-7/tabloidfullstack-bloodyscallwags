@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom"
 import { getUser, deactivateUser } from "../../Managers/UserProfileManager"
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap"
 
+//If a user account has isActive = 0, it is considered deactivated/inactive
+//If a user account has isActive = 1, it is considered active
 export const UserProfileDeactivate = ({profile}) => {
 
     const [user, updateUser] = useState({

@@ -13,10 +13,11 @@ export default function Login({setIsLoggedIn}) {
     e.preventDefault();
     login({email, password})
       .then((r) => {
-        console.log(r)
+        //0 = Inactive account; 1 = Active Account
+        //If the account has been deactivated, users will be prevented from logging in and receive the window alert.
         if (r.isActive === 0){
           setIsLoggedIn(false);
-          alert("Your account has been deactivated.")
+          alert("Your account has been deactivated by an administrator. Please contact us to reactivate your account.")
         }
       else if(r){
       setIsLoggedIn(true)

@@ -14,8 +14,6 @@ export const UserProfileList = () => {
         getProfiles();
     }, []);
 
-    
-
     //returns a list of all user profiles
     return (
         <Table striped size="sm" className="table_index" id="userProfileTable">
@@ -44,6 +42,3 @@ export const UserProfileList = () => {
 
 
 };
-
-//change isActive to int (might have to comment out every instance of it in Visual Community)
-//make 1 = isActive (true) and 2 = isActive (false). Button click (confirm) will change what the value is. Hopefully will be easier.

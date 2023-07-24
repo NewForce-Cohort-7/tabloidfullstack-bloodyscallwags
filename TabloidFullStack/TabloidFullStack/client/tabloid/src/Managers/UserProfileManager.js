@@ -44,11 +44,13 @@ export const register = (userObject, password) => {
     });
 };
 
+//GET User by Id
 export const getUser = (id) => { //http GET by id parameter 
   return fetch(`${apiUrl}/api/userprofile/${id}`)
   .then((res) => res.json());
 }
 
+//PUT for UserProfileDeactivate.js
 export const deactivateUser = (user) => {
   return fetch(`${apiUrl}/api/userprofile/${user.id}`, {
     method: "PUT",
