@@ -20,14 +20,13 @@ const ApplicationViews = () => {
     return (
       <Routes>
         <Route path="/" element={<Hello />} />
-        <Route path="/userProfilesList" element={<UserProfileList />} />
-        <Route path="/categoriesList" element={<CategoryList />} />
-        <Route path="/tag" element={<TagList />} />
-        <Route path="/tag-form" element={<TagForm />} />
-        <Route path="category/create" element={<CategoryForm />} />
-        <Route path="/tags/edit/:tagId" element={<EditTag/>} />
-        <Route path="/tags" element={<TagList />} />
-        <Route path="tags/delete/:tagId" element={<DeleteTag />} />
+
+          <Route path="/userProfilesList" element={<UserProfileList />} />
+          <Route path="/categoriesList" element= {<CategoryList />} />
+          <Route path="/tag" element= {<TagList />} />
+          <Route path="/tag-form" element= {<TagForm />} />
+          
+          <Route path="category/create" element={ <CategoryForm />} />
       </Routes>
     );
   } else {
