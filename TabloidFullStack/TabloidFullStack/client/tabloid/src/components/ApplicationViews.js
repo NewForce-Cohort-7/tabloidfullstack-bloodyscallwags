@@ -2,52 +2,41 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Hello from "./Hello";
 import { UserProfileList } from "./UserProfile/UserProfileList";
-import  TagList  from "./tags/TagList";
-import  TagForm  from "./tags/TagForm";
-import  CategoryList  from "./Category/CategoryList";
+import TagList  from "./tags/TagList";
+import TagForm from "./tags/TagForm";
+import CategoryList from "./Category/CategoryList";
 import { CategoryForm } from "./Category/CategoryForm";
 
-//original code - keeping for safety
-// export default function ApplicationViews() {
 
-//  return(
-//       <Routes>
-//         <Route path="/" element={<Hello />} />
+import { EditTag } from "./tags/TagEdit";
+import { DeleteTag } from "./tags/TagDelete";
 
-//           <Route path="/userProfilesList" element={<UserProfileList />} />
-//       </Routes>
-//    );
- 
-// }
 
-//modified code of ApplicationViews to have different views for routes; might need to separate this later depending on how messy it gets
 const ApplicationViews = () => {
-  const localUser = localStorage.getItem("userProfile")
-  const userObject = JSON.parse(localUser)
+  const localUser = localStorage.getItem("userProfile");
+  const userObject = JSON.parse(localUser);
 
   if (userObject?.admin) {
-    return(
+    return (
       <Routes>
         <Route path="/" element={<Hello />} />
-
-          <Route path="/userProfilesList" element={<UserProfileList />} />
-          <Route path="/categoriesList" element= {<CategoryList />} />
-          <Route path="/tag" element= {<TagList />} />
-          <Route path="/tag-form" element= {<TagForm />} />
-          
-          <Route path="category/create" element={ <CategoryForm />} />
+        <Route path="/userProfilesList" element={<UserProfileList />} />
+        <Route path="/categoriesList" element={<CategoryList />} />
+        <Route path="/tag" element={<TagList />} />
+        <Route path="/tag-form" element={<TagForm />} />
+        <Route path="category/create" element={<CategoryForm />} />
+        <Route path="/tags/edit/:tagId" element={<EditTag/>} />
+        <Route path="/tags" element={<TagList />} />
+        <Route path="tags/delete/:tagId" element={<DeleteTag />} />
+      </Routes>
+    );
+  } else {
+    return (
+      <Routes>
+        <Route path="/" element={<Hello />} />
       </Routes>
     );
   }
-  else {
-    return(
-      <Routes>
-        <Route path="/" element={<Hello />} />
- 
-
-      </Routes>
-   );
-  }
-}
+};
 
 export default ApplicationViews;

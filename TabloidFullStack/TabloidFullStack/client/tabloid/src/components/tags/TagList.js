@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Card, Col, Container, Row, Button } from "reactstrap";
-import Tag from "./Tag";
-import { GetAllTags } from "../../Managers/TagManager";
-import "./Tag.css";
+import { Table, Button } from "reactstrap";
 import { Link } from "react-router-dom";
-
-
+import { getAllTags } from "../../Managers/TagManager";
 
 const TagList = () => {
   const [tags, setTags] = useState([]);
- 
 
   const getTags = () => {
-    GetAllTags().then((tags) => setTags(tags));
+    getAllTags().then(tagsFromAPI => setTags(tagsFromAPI));
   };
 
   useEffect(() => {
@@ -20,20 +15,37 @@ const TagList = () => {
   }, []);
 
   return (
-    <Container>
-      <Row className="flex-column">
-        <h2>Tags</h2>
-          <Button tag={Link} to="/tag-form" className="create-tag-btn">Create New Tag</Button>
-        {tags.map((tag) => (
-          <Col md={6} lg={4} key={tag.id}>
-            <Card className="mb-4">
-              <Tag tag={tag} getTags={getTags} />
-            </Card>
-          </Col>
-        ))}
-      </Row>
-    </Container>
+    <>
+        <Button tag={Link} to="/tag-form" color="primary" className="mb-2">
+            Add Tag
+        </Button>
+        <Table striped size="sm" className="table1_index" id="tagTable">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Tag Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {tags.map(tag => (
+                    <tr key={tag.id}>
+                        <th scope="row">{tag.id}</th>
+                        <td>{tag.name}</td>
+                        <td>
+                            <Link to={`/tags/edit/${tag.id}`}>
+                                <Button color="primary" className="mr-2">Edit</Button>
+                            </Link>
+                            <Link to={`/tags/delete/${tag.id}`}>
+                                <Button color="danger">Delete</Button>
+                            </Link>
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+        </Table>
+    </>
   );
-};
+}
 
 export default TagList;
