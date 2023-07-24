@@ -46,6 +46,7 @@ export const UserProfileDeactivate = ({profile}) => {
     ) : (
         <>User Account is Deactivated</>
     )}
+                    {/* Modal is from reactstrap and creates a pop-up */}
                     <Modal isOpen={modal} toggle={toggle}>
                         <ModalHeader toggle={toggle}>Confirm Account Deactivation</ModalHeader>
                         <ModalBody>Are you sure you want to deactive {profile.fullName}?</ModalBody>
