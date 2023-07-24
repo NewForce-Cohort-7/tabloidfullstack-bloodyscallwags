@@ -1,70 +1,47 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
-import UserProfile from "./UserProfile";
+import React, { useState, useEffect } from "react";
 import { getAllUserProfiles } from "../../Managers/UserProfileManager";
-import { Table } from "reactstrap";
+import { Button, NavLink, Table } from "reactstrap";
+import "./UserProfile.css"
+import { Link } from "react-router-dom";
 
 export const UserProfileList = () => {
-    const [users, setUsers] = useState([]);
-
-    const getUsers = () => {
-        getAllUserProfiles().then(all => setUsers(all))
+    const [profiles, setProfiles] = useState([]);
+    const getProfiles = () => {
+        getAllUserProfiles().then(allProfiles => setProfiles(allProfiles));
     };
 
-    useEffect (
-    () => {
-        getUsers();
+    useEffect(() => {
+        getProfiles();
     }, []);
-    console.log(users)
 
+    //returns a list of all user profiles
     return (
-    <>
-      <h3>User Profiles</h3>
-      <Table striped size="sm" className="table_index" id="userProfileTable">
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Full Name</th>
-            <th>Display Name</th>
-            <th>User Type</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => (
-            <UserProfile
-              key={user.id}
-              user={user}
-            //   handleActive={handleActiveUser}
-            //   handleNotActive={handleNotActiveUser}
-            />
-          ))}
-        </tbody>
-      </Table>
-    </>
+        <Table striped size="sm" className="table_index" id="userProfileTable">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Full Name</th>
+                    <th>Display Name</th>
+                    <th>User Type</th>
+                    <td>Actions</td>
+                </tr>
+                </thead>
+                <tbody>
+                    {profiles.map((profile) => (
+                        <tr key={profile.id}>
+                            <th scope="row">{profile.id}</th>
+                            <td><NavLink href={`/userprofile/${profile.id}`} id="userDetailsLink"><u>{profile.fullName}</u></NavLink></td>
+                            <td>{profile.displayName}</td>
+                            <td>{profile.userType.name}</td>
+                            <td><Button id="deactivateButon">Deactivate</Button></td>
+                        </tr>
+                    ))}
+            </tbody>
+        </Table>
+    );
 
 
+};
 
-
-
-
-
-
-
-
-
-    // <div>
-    //     <h3 style={{margin: '15px'}}>User Profiles</h3>
-    //     <div style={{display: 'flex', flexDirection: 'column',margin: '15px'}}>
-    //         {users.map((u) => (
-    //             <div style={{margin: '20px'}}>
-    //                 <UserProfile key={u.id} user={u} get={getUsers}/>
-    //             </div>
-    //         ))}
-    //     </div>
-    // </div>)
-    )
-}
-
-// export default UserProfileList;
+//change isActive to int (might have to comment out every instance of it in Visual Community)
+//make 1 = isActive (true) and 2 = isActive (false). Button click (confirm) will change what the value is. Hopefully will be easier.

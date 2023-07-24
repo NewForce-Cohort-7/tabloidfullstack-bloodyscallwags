@@ -38,7 +38,7 @@ namespace TabloidFullStack.Repositories
                             CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
                             ImageLocation = DbUtils.GetString(reader, "ImageLocation"),
                             UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
-                            IsActive = DbUtils.IsDbNull(reader, "IsActive"),
+                            IsActive = DbUtils.GetInt(reader, "IsActive"),
                             UserType = new UserType()
                             {
                                 Id = DbUtils.GetInt(reader, "UserTypeId"),
@@ -86,7 +86,7 @@ namespace TabloidFullStack.Repositories
                             CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
                             ImageLocation = DbUtils.GetString(reader, "ImageLocation"),
                             UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
-                            IsActive = DbUtils.IsDbNull(reader, "IsActive"),
+                            IsActive = DbUtils.GetInt(reader, "IsActive"),
                             UserType = new UserType()
                             {
                                 Id = DbUtils.GetInt(reader, "UserTypeId"),
@@ -134,7 +134,7 @@ namespace TabloidFullStack.Repositories
                             CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
                             ImageLocation = DbUtils.GetString(reader, "ImageLocation"),
                             UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
-                            IsActive = DbUtils.IsDbNull(reader, "IsActive"),
+                            IsActive = DbUtils.GetInt(reader, "IsActive"),
                             UserType = new UserType()
                             {
                                 Id = DbUtils.GetInt(reader, "UserTypeId"),
