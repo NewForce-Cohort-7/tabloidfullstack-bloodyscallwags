@@ -12,11 +12,16 @@ export default function Login({setIsLoggedIn}) {
   const loginSubmit = (e) => {
     e.preventDefault();
     login({email, password})
-      .then(r =>{
-      if(r){
+      .then((r) => {
+        console.log(r)
+        if (r.isActive === 0){
+          setIsLoggedIn(false);
+          alert("Your account has been deactivated.")
+        }
+      else if(r){
       setIsLoggedIn(true)
       navigate('/')
-      }
+      } 
       else{
         alert("Invalid email or password")
       }
