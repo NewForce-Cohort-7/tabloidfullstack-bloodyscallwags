@@ -4,8 +4,10 @@ namespace TabloidFullStack.Repositories
 {
     public interface ITagRepository
     {
-        void Add(Tag tag);
         List<Tag> GetAll();
         Tag GetById(int id);
+        void Add(Tag tag);
+        void Delete(int id);
+        void Update(Tag tag);
     }
 }

@@ -1,19 +1,22 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using TabloidFullStack.Models;
 using TabloidFullStack.Repositories;
 
 namespace TabloidFullStack.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class TagController : ControllerBase
     {
+
         private readonly ITagRepository _tagRepository;
+
         public TagController(ITagRepository tagRepository)
         {
             _tagRepository = tagRepository;
         }
+
         [HttpGet]
         public IActionResult Get()
         {
@@ -37,5 +40,33 @@ namespace TabloidFullStack.Controllers
             _tagRepository.Add(tag);
             return CreatedAtAction("Get", new { id = tag.Id }, tag);
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var tag = _tagRepository.GetById(id);
+            if (tag == null)
+            {
+                return NotFound();
+            }
+
+            _tagRepository.Delete(tag.Id);
+
+            return Ok(tag);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, Tag tag)
+        {
+            if (id != tag.Id)
+            {
+                return BadRequest();
+            }
+
+            _tagRepository.Update(tag);
+            return NoContent();
+        }
+
     }
+
 }
