@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getAllUserProfiles } from "../../Managers/UserProfileManager";
 import { NavLink, Table } from "reactstrap";
 import "./UserProfile.css"
-import { Link } from "react-router-dom";
+import { UserProfileDeactivate } from "./UserProfileDeactivate";
 
 export const UserProfileList = () => {
     const [profiles, setProfiles] = useState([]);
@@ -23,15 +23,17 @@ export const UserProfileList = () => {
                     <th>Full Name</th>
                     <th>Display Name</th>
                     <th>User Type</th>
+                    <td>Actions</td>
                 </tr>
                 </thead>
                 <tbody>
                     {profiles.map((profile) => (
                         <tr key={profile.id}>
                             <th scope="row">{profile.id}</th>
-                            <NavLink href={`/userprofile/${profile.id}`} id="userDetailsLink"><td><u>{profile.fullName}</u></td></NavLink>
+                            <td><NavLink href={`/userprofile/${profile.id}`} id="userDetailsLink"><u>{profile.fullName}</u></NavLink></td>
                             <td>{profile.displayName}</td>
                             <td>{profile.userType.name}</td>
+                            <td><UserProfileDeactivate profile = {profile} /></td>
                         </tr>
                     ))}
             </tbody>

@@ -41,5 +41,7 @@ namespace TabloidFullStack.Models
                 return $"{FirstName} {LastName}";
             }
         }
+        //If a user is active, they will have their int set to 1, if they are inactive, they will have it set to 2
+        public int IsActive { get; set; }
     }
 }
