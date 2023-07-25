@@ -14,13 +14,5 @@
         public UserProfile UserProfile { get; set; }
         public Category Category { get; set; }
 
-
-        //public string AuthorName 
-        //{ 
-        //    get
-        //    {
-        //        return UserProfile.FullName;
-        //    }
-        //}
     }
 }

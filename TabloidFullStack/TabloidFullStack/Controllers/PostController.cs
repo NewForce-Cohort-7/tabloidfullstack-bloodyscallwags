@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using TabloidFullStack.Models;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using TabloidFullStack.Repositories;
+using TabloidFullStack.Models;
+using System.Security.Claims;
 
 namespace TabloidFullStack.Controllers
 {
@@ -20,6 +22,19 @@ namespace TabloidFullStack.Controllers
         {
             return Ok(_postRepository.GetAllApprovedPosts());
         }
+
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            List<Post> posts = _postRepository.GetPostsByUserId(id);
+            if (posts == null)
+            {
+                return NotFound();
+            }
+            return Ok(posts);
+        }
+
+
 
     }
 }
