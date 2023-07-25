@@ -1,4 +1,5 @@
-﻿using TabloidFullStack.Models;
+﻿using Microsoft.Data.SqlClient;
+using TabloidFullStack.Models;
 using TabloidFullStack.Utils;
 
 namespace TabloidFullStack.Repositories
@@ -17,7 +18,7 @@ namespace TabloidFullStack.Repositories
                     cmd.CommandText = @"
                         SELECT up.Id, up.FirstName, up.LastName, up.DisplayName, 
                                up.Email, up.CreateDateTime, up.ImageLocation, up.UserTypeId,
-                               ut.Name AS UserTypeName
+                               ut.Name AS UserTypeName, up.IsActive
                           FROM UserProfile up
                                LEFT JOIN UserType ut on up.UserTypeId = ut.Id
                         ORDER BY up.DisplayName";
@@ -37,6 +38,7 @@ namespace TabloidFullStack.Repositories
                             CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
                             ImageLocation = DbUtils.GetString(reader, "ImageLocation"),
                             UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
+                            IsActive = DbUtils.GetInt(reader, "IsActive"),
                             UserType = new UserType()
                             {
                                 Id = DbUtils.GetInt(reader, "UserTypeId"),
@@ -62,7 +64,7 @@ namespace TabloidFullStack.Repositories
                     cmd.CommandText = @"
                           SELECT up.Id, up.FirstName, up.LastName, up.DisplayName, 
                                up.Email, up.CreateDateTime, up.ImageLocation, up.UserTypeId,
-                               ut.Name AS UserTypeName
+                               ut.Name AS UserTypeName, up.IsActive
                           FROM UserProfile up
                                LEFT JOIN UserType ut on up.UserTypeId = ut.Id
                            WHERE up.Id = @Id";
@@ -84,6 +86,7 @@ namespace TabloidFullStack.Repositories
                             CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
                             ImageLocation = DbUtils.GetString(reader, "ImageLocation"),
                             UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
+                            IsActive = DbUtils.GetInt(reader, "IsActive"),
                             UserType = new UserType()
                             {
                                 Id = DbUtils.GetInt(reader, "UserTypeId"),
@@ -109,7 +112,7 @@ namespace TabloidFullStack.Repositories
                     cmd.CommandText = @"
                         SELECT up.Id, up.FirstName, up.LastName, up.DisplayName, 
                                up.Email, up.CreateDateTime, up.ImageLocation, up.UserTypeId,
-                               ut.Name AS UserTypeName
+                               ut.Name AS UserTypeName, up.IsActive
                           FROM UserProfile up
                                LEFT JOIN UserType ut on up.UserTypeId = ut.Id
                          WHERE Email = @email";
@@ -131,6 +134,7 @@ namespace TabloidFullStack.Repositories
                             CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
                             ImageLocation = DbUtils.GetString(reader, "ImageLocation"),
                             UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
+                            IsActive = DbUtils.GetInt(reader, "IsActive"),
                             UserType = new UserType()
                             {
                                 Id = DbUtils.GetInt(reader, "UserTypeId"),
@@ -166,6 +170,28 @@ namespace TabloidFullStack.Repositories
                     DbUtils.AddParameter(cmd, "@UserTypeId", userProfile.UserTypeId);
 
                     userProfile.Id = (int)cmd.ExecuteScalar();
+                }
+            }
+        }
+
+        public void UpdateActive(UserProfile user)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                            UPDATE UserProfile
+                            SET 
+                                IsActive = @isActive
+                            WHERE Id = @id";
+
+                    cmd.Parameters.AddWithValue("@isActive", user.IsActive);
+                    cmd.Parameters.AddWithValue("@id", user.Id);
+
+                    cmd.ExecuteNonQuery();
                 }
             }
         }
