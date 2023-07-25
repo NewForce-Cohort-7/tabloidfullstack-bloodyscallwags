@@ -1,31 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router } from "react-router-dom";
 import Header from "./components/Header";
 import ApplicationViews from "./components/ApplicationViews";
+import { useEffect } from 'react';
 import Authorize from './components/Authorize';
 
+
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
 
-  useEffect(() => {
-    // Check if the user is already logged in from local storage
-    const storedIsLoggedIn = localStorage.getItem("isLoggedIn");
-    if (storedIsLoggedIn === "true") {
-      setIsLoggedIn(true);
-    }
-  }, []);
 
-  // Save isLoggedIn state to local storage whenever it changes
-  useEffect(() => {
-    localStorage.setItem("isLoggedIn", isLoggedIn.toString());
-  }, [isLoggedIn]);
+    useEffect(() => {
+        if (!localStorage.getItem("userProfile")) {
+            setIsLoggedIn(false)
 
-  return (
-    <Router>
-      <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-      {isLoggedIn ? <ApplicationViews /> : <Authorize setIsLoggedIn={setIsLoggedIn} />}
-    </Router>
-  );
+        }
+    }, [isLoggedIn])
+
+    return (
+        <Router>
+            <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+            {isLoggedIn ?
+                <ApplicationViews />
+                :
+                <Authorize setIsLoggedIn={setIsLoggedIn} />
+            }
+        </Router>
+    );
 }
 
 export default App;
