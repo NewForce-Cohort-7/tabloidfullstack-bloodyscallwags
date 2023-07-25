@@ -1,8 +1,3 @@
-import React from "react";
-
-
-
-
 const apiUrl = "https://localhost:5001";
 
 export const getAllUserProfiles = () => {

@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { getAllUserProfiles } from "../../Managers/UserProfileManager";
-import { NavLink, Table, Button } from "reactstrap";
+import { Table, Button } from "reactstrap";
 import "./UserProfile.css"
-import { UserProfileDeactivate } from "./UserProfileDeactivate";
 import { Link } from "react-router-dom";
+// import { UserProfileDeactivate } from "./UserProfileDeactivate";
+import { getByActiveStatus } from "../../Managers/UserProfileManager";
 
-export const UserProfileList = () => {
+export const DeactivatedUserList = () => {
     const [profiles, setProfiles] = useState([]);
     const getProfiles = () => {
-        getAllUserProfiles().then(allProfiles => setProfiles(allProfiles));
-    };
+        getAllUserProfiles().then(allProfiles => {
+          // Filter the profiles to include only the ones with isActive === 0 (meaning they are deactivated)
+          const deactivatedProfiles = allProfiles.filter(profile => profile.isActive === 0);
+          setProfiles(deactivatedProfiles);
+        });
+      };
+    
 
     useEffect(() => {
         getProfiles();
@@ -18,7 +24,7 @@ export const UserProfileList = () => {
     //returns a list of all user profiles
     return (
         <>
-        <Link to="/deactivatedusers" id="deactivatedUsersLink"><Button>View Deactivated</Button></Link>
+        <Link to="/userProfilesList"><Button>Back to User List</Button></Link>
         <Table striped size="sm" className="table_index" id="userProfileTable">
             <thead>
                 <tr>
@@ -33,10 +39,10 @@ export const UserProfileList = () => {
                     {profiles.map((profile) => (
                         <tr key={profile.id}>
                             <th scope="row">{profile.id}</th>
-                            <td><NavLink href={`/userprofile/${profile.id}`} id="userDetailsLink"><u>{profile.fullName}</u></NavLink></td>
+                            <td>{profile.fullName}</td>
                             <td>{profile.displayName}</td>
                             <td>{profile.userType.name}</td>
-                            <td><UserProfileDeactivate profile = {profile} /></td>
+                            {/* <td><UserProfileDeactivate profile = {profile} /></td> */}
                         </tr>
                     ))}
             </tbody>
