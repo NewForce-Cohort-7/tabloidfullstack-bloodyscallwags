@@ -23,10 +23,10 @@ namespace TabloidFullStack.Controllers
             return Ok(_postRepository.GetAllApprovedPosts());
         }
 
-        [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        [HttpGet("UserId{Id}")]
+        public IActionResult GetPostsByUserId(int Id)
         {
-            List<Post> posts = _postRepository.GetPostsByUserId(id);
+            List<Post> posts = _postRepository.GetPostsByUserId(Id);
             if (posts == null)
             {
                 return NotFound();
@@ -34,7 +34,16 @@ namespace TabloidFullStack.Controllers
             return Ok(posts);
         }
 
-
+        [HttpGet("PostId{Id}")]
+        public IActionResult GetPostById(int Id)
+        {
+            var post = _postRepository.GetPostById(Id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+            return Ok(post);
+        }
 
     }
 }

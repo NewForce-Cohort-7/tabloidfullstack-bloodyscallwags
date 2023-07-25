@@ -4,6 +4,7 @@ import Hello from "./Hello";
 import { UserProfileList } from "./UserProfile/UserProfileList";
 import { AllPosts } from "./Posts/PostList";
 import { UserPosts } from "./Posts/UserPosts";
+import { PostDetails } from "./Posts/PostDetails";
 import  TagList  from "./tags/TagList";
 import  TagForm  from "./tags/TagForm";
 import  CategoryList  from "./Category/CategoryList";
@@ -34,7 +35,8 @@ const ApplicationViews = () => {
 
           <Route path="/userProfilesList" element={<UserProfileList />} />
           <Route path="/posts" element={<AllPosts />} />
-          <Route path="/userposts/:id" element={<UserPosts />} />
+          <Route path="/posts/user/:id" element={<UserPosts />} />
+          <Route path="/posts/post/:id" element={<PostDetails />} />
           <Route path="/categoriesList" element= {<CategoryList />} />
           <Route path="/tag" element= {<TagList />} />
           <Route path="/tag-form" element= {<TagForm />} />

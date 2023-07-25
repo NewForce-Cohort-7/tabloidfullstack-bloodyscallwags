@@ -48,7 +48,7 @@ export const UserPosts = () => {
                             <td>{post.publishDateTime}</td>
                     <td>
                         <div className="function-container">
-                        <a href="/" className="btn btn-outline-secondary mx-1" title="Details">
+                        <a href={`/posts/post/${post.id}`} className="btn btn-outline-secondary mx-1" title="Details">
                             <EyeFill />
                         </a>
                         <a href="/" className="btn btn-outline-secondary mx-1" title="Edit">

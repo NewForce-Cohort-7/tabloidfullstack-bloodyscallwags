@@ -13,6 +13,9 @@ export const AllPosts = () => {
         getAllApprovedPosts().then(allPosts => setPosts(allPosts));
     };
 
+    const localUser = localStorage.getItem("userProfile")
+    const userObject = JSON.parse(localUser)
+
     useEffect(() => {
         getPosts();
     }, []);
@@ -20,7 +23,8 @@ export const AllPosts = () => {
     //returns a list of all user profiles
     return (
     <>
-    <a href="/userposts/:id" className="btn btn-outline-secondary mx-1" title="Details">
+    
+    <a href={`/posts/user/${userObject.id}`} className="btn btn-outline-secondary mx-1" title="Details">
                             My Posts
                         </a>
     <div className="container pt-5">
@@ -36,6 +40,7 @@ export const AllPosts = () => {
                 </thead>
                 <tbody>
                     {posts.map((post) => (
+                        <>
                         <tr key={post.id}>
                             <td>{post.userProfile.fullName}</td>
                             <td>{post.title}</td>
@@ -43,7 +48,7 @@ export const AllPosts = () => {
                             <td>{post.publishDateTime}</td>
                     <td>
                         <div className="function-container">
-                        <a href="/" className="btn btn-outline-secondary mx-1" title="Details">
+                        <a href={`/posts/post/${post.id}`} className="btn btn-outline-secondary mx-1" title="Details">
                             <EyeFill />
                         </a>
                         <a href="/" className="btn btn-outline-secondary mx-1" title="Edit">
@@ -55,6 +60,7 @@ export const AllPosts = () => {
                         </div>
                     </td>
                         </tr>
+                        </>
                     ))}
             </tbody>
         </Table>
