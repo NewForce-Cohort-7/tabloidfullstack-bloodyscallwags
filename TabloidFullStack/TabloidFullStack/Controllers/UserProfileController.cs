@@ -70,15 +70,15 @@ namespace TabloidFullStack.Controllers
             return Ok(user);
         }
 
-        [HttpGet("GetByActiveStatus/{isActive}")]
-        public IActionResult GetByActiveStatus(int isActive)
-        {
-            var profile = _userRepository.GetByActiveStatus(isActive);
-            if (profile == null)
-            {
-                return NotFound();
-            }
-            return Ok(profile);
-        }
+        //[HttpGet("GetByActiveStatus/{isActive}")]
+        //public IActionResult GetByActiveStatus(int isActive)
+        //{
+        //    var profile = _userRepository.GetByActiveStatus(isActive);
+        //    if (profile == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return Ok(profile);
+        //}
     }
 }

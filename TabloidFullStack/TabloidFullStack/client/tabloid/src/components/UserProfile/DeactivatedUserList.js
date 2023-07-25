@@ -3,8 +3,7 @@ import { getAllUserProfiles } from "../../Managers/UserProfileManager";
 import { Table, Button } from "reactstrap";
 import "./UserProfile.css"
 import { Link } from "react-router-dom";
-// import { UserProfileDeactivate } from "./UserProfileDeactivate";
-import { getByActiveStatus } from "../../Managers/UserProfileManager";
+import { ReactivateUserProfile } from "./ReactivateUserProfile";
 
 export const DeactivatedUserList = () => {
     const [profiles, setProfiles] = useState([]);
@@ -42,7 +41,7 @@ export const DeactivatedUserList = () => {
                             <td>{profile.fullName}</td>
                             <td>{profile.displayName}</td>
                             <td>{profile.userType.name}</td>
-                            {/* <td><UserProfileDeactivate profile = {profile} /></td> */}
+                            <td><ReactivateUserProfile profile = {profile} /></td>
                         </tr>
                     ))}
             </tbody>

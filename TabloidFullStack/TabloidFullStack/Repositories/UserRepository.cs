@@ -196,53 +196,53 @@ namespace TabloidFullStack.Repositories
             }
         }
 
-        public UserProfile GetByActiveStatus(int isActive)
-        {
-            using (var conn = Connection)
-            {
-                conn.Open();
-                using (var cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = @"
-                          SELECT up.Id, up.FirstName, up.LastName, up.DisplayName, 
-                               up.Email, up.CreateDateTime, up.ImageLocation, up.UserTypeId,
-                               ut.Name AS UserTypeName, up.IsActive
-                          FROM UserProfile up
-                               LEFT JOIN UserType ut on up.UserTypeId = ut.Id
-                           WHERE up.IsActive = @isActive
-                           ORDER BY up.DisplayName";
+        //public UserProfile GetByActiveStatus(int isActive)
+        //{
+        //    using (var conn = Connection)
+        //    {
+        //        conn.Open();
+        //        using (var cmd = conn.CreateCommand())
+        //        {
+        //            cmd.CommandText = @"
+        //                  SELECT up.Id, up.FirstName, up.LastName, up.DisplayName, 
+        //                       up.Email, up.CreateDateTime, up.ImageLocation, up.UserTypeId,
+        //                       ut.Name AS UserTypeName, up.IsActive
+        //                  FROM UserProfile up
+        //                       LEFT JOIN UserType ut on up.UserTypeId = ut.Id
+        //                   WHERE up.IsActive = @isActive
+        //                   ORDER BY up.DisplayName";
 
-                    DbUtils.AddParameter(cmd, "@isActive", isActive);
+        //            DbUtils.AddParameter(cmd, "@isActive", isActive);
 
-                    var reader = cmd.ExecuteReader();
+        //            var reader = cmd.ExecuteReader();
 
-                    UserProfile profile = null;
-                    if (reader.Read())
-                    {
-                        profile = new UserProfile()
-                        {
-                            Id = DbUtils.GetInt(reader, "Id"),
-                            FirstName = DbUtils.GetString(reader, "FirstName"),
-                            LastName = DbUtils.GetString(reader, "LastName"),
-                            DisplayName = DbUtils.GetString(reader, "DisplayName"),
-                            Email = DbUtils.GetString(reader, "Email"),
-                            CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
-                            ImageLocation = DbUtils.GetString(reader, "ImageLocation"),
-                            UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
-                            IsActive = DbUtils.GetInt(reader, "IsActive"),
-                            UserType = new UserType()
-                            {
-                                Id = DbUtils.GetInt(reader, "UserTypeId"),
-                                Name = DbUtils.GetString(reader, "UserTypeName"),
-                            }
-                        };
-                    }
+        //            UserProfile profile = null;
+        //            if (reader.Read())
+        //            {
+        //                profile = new UserProfile()
+        //                {
+        //                    Id = DbUtils.GetInt(reader, "Id"),
+        //                    FirstName = DbUtils.GetString(reader, "FirstName"),
+        //                    LastName = DbUtils.GetString(reader, "LastName"),
+        //                    DisplayName = DbUtils.GetString(reader, "DisplayName"),
+        //                    Email = DbUtils.GetString(reader, "Email"),
+        //                    CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
+        //                    ImageLocation = DbUtils.GetString(reader, "ImageLocation"),
+        //                    UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
+        //                    IsActive = DbUtils.GetInt(reader, "IsActive"),
+        //                    UserType = new UserType()
+        //                    {
+        //                        Id = DbUtils.GetInt(reader, "UserTypeId"),
+        //                        Name = DbUtils.GetString(reader, "UserTypeName"),
+        //                    }
+        //                };
+        //            }
 
-                    reader.Close();
+        //            reader.Close();
 
-                    return profile;
-                }
-            }
-        }
+        //            return profile;
+        //        }
+        //    }
+        //}
     }
 }
