@@ -2,26 +2,14 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Hello from "./Hello";
 import { UserProfileList } from "./UserProfile/UserProfileList";
+import { UserProfileDetails } from "./UserProfile/UserProfileDetails";
 import { Posts } from "./Posts/PostList";
 import  TagList  from "./tags/TagList";
 import  TagForm  from "./tags/TagForm";
 import  CategoryList  from "./Category/CategoryList";
 import { CategoryForm } from "./Category/CategoryForm";
 
-//original code - keeping for safety
-// export default function ApplicationViews() {
-
-//  return(
-//       <Routes>
-//         <Route path="/" element={<Hello />} />
-
-//           <Route path="/userProfilesList" element={<UserProfileList />} />
-//       </Routes>
-//    );
- 
-// }
-
-//modified code of ApplicationViews to have different views for routes; might need to separate this later depending on how messy it gets
+//modified code of ApplicationViews to have different views for routes
 const ApplicationViews = () => {
   const localUser = localStorage.getItem("userProfile")
   const userObject = JSON.parse(localUser)
@@ -30,7 +18,7 @@ const ApplicationViews = () => {
     return(
       <Routes>
         <Route path="/" element={<Hello />} />
-
+          <Route path="/userprofile/:id" element={<UserProfileDetails />} />
           <Route path="/userProfilesList" element={<UserProfileList />} />
           <Route path="/posts" element={<Posts />} />
           <Route path="/categoriesList" element= {<CategoryList />} />
