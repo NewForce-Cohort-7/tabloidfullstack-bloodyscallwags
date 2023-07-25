@@ -63,6 +63,11 @@ export const deactivateUser = (user) => {
 
 }
 
+export const getByActiveStatus = (isActive) => { //http GET by isActive parameter 
+  return fetch(`${apiUrl}/api/userprofile/${isActive}`)
+  .then((res) => res.json());
+}
+
 // return (
 //   <UserProfileContext.Provider value={{ isLoggedIn, login, logout, register,  }}>
 //      {props.children}
