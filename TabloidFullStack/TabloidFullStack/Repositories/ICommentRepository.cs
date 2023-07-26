@@ -2,12 +2,14 @@ using TabloidFullStack.Models;
 
 namespace TabloidFullStack.Repositories
 {
-      public interface ICommentRepository
+    public interface ICommentRepository
     {
+
+        List<Comment> GetAllByPostId(int postId);
         void Add(Comment comment);
         void Delete(int id);
         void Update(Comment comment);
-        List<Comment> GetByPostId(int id);
-        
+        Comment GetCommentById(int id);
+
     }
 }

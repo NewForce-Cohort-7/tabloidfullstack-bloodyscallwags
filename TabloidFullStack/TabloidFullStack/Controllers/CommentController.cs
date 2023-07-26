@@ -1,8 +1,7 @@
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TabloidFullStack.Models;
 using TabloidFullStack.Repositories;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace TabloidFullStack.Controllers
 {
@@ -10,39 +9,60 @@ namespace TabloidFullStack.Controllers
     [ApiController]
     public class CommentController : ControllerBase
     {
-        private readonly ICommentRepository _commentRepository;
-        private readonly IPostRepository _postRepository;
-        private readonly IUserRepository _userRepository;
-        public CommentController(ICommentRepository commentRepository, IUserRepository userRepository, IPostRepository postRepository)
+
+        private readonly ICommentRepository _commentRepo;
+        public CommentController(ICommentRepository commentRepository)
         {
-            _commentRepository = commentRepository;
-            _userRepository = userRepository;
-            _postRepository = postRepository;
+            _commentRepo = commentRepository;
         }
 
-        [HttpGet("GetByPostId/{id}")]
-        public IActionResult GetByPostId(int id)
-        {
-            var comments = _commentRepository.GetByPostId(id);
 
-            if (comments == null)
+
+        // http://localhost:5000/api/comments/5
+        [HttpGet("{id}")]
+        public ActionResult Get(int id)
+        {
+            var comment = _commentRepo.GetAllByPostId(id);
+            if (comment == null)
             {
                 return NotFound();
             }
-            return Ok(comments);
+            return Ok(comment);
         }
 
-        [HttpPost]
-        public IActionResult Post(Comment comment)
+        [HttpGet("commentById/{id}")]
+        public IActionResult GetById(int id)
         {
-            comment.CreateDateTime = DateTime.Now;
-            _commentRepository.Add(comment);
-            return CreatedAtAction(
-                               "GetByPostId",
-                                              new { id = comment.PostId },
-                                                             comment);
+            Comment comment = _commentRepo.GetCommentById(id);
+            if (comment == null)
+            {
+                return NotFound();
+            }
+            return Ok(comment);
         }
 
+
+
+
+
+        // http://localhost:5000/api/comment
+        [HttpPost]
+        public ActionResult Post(Comment comment)
+        {
+            _commentRepo.Add(comment);
+            return CreatedAtAction("Get", new { id = comment.Id }, comment);
+        }
+
+        // http://localhost:5000/api/comment/5
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            _commentRepo.Delete(id);
+            return NoContent();
+        }
+
+
+        // http://localhost:5000/api/comment/5
         [HttpPut("{id}")]
         public IActionResult Put(int id, Comment comment)
         {
@@ -50,17 +70,15 @@ namespace TabloidFullStack.Controllers
             {
                 return BadRequest();
             }
-            _commentRepository.Update(comment);
+            _commentRepo.Update(comment);
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-        {
-            _commentRepository.Delete(id);
-            return NoContent();
-        }
 
-      
+
+
+
+
+
     }
 }

@@ -11,6 +11,7 @@ import  TagForm  from "./tags/TagForm";
 import  CategoryList  from "./Category/CategoryList";
 import { CategoryForm } from "./Category/CategoryForm";
 import { CommentList } from "./Comment/CommentList";
+import { CommentForm } from "./Comment/CommentForm";
 
 //modified code of ApplicationViews to have different views for routes
 const ApplicationViews = () => {
@@ -31,7 +32,7 @@ const ApplicationViews = () => {
           <Route path="/tag-form" element= {<TagForm />} />
           <Route path="*" element={<p>Whoops, nothing here...</p>} />
           <Route path="/comment/:id" element={<CommentList />} />
-          <Route path="comment/create/:postId" element={<CommentForm />} />
+          <Route path="comment/create/:id" element={<CommentForm />} />
           <Route path="category/create" element={ <CategoryForm />} />
       </Routes>
     );

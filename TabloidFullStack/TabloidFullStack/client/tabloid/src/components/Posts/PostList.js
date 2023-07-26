@@ -50,10 +50,10 @@ export const AllPosts = () => {
                             <EyeFill />
                         </a>
                         <a href="/" className="btn btn-outline-secondary mx-1" title="Edit">
-                            {/* <PencilFill /> */}
+                            <PencilFill />
                         </a>
                         <a href="/" className="btn btn-outline-secondary mx-1" title="Delete">
-                            {/* <TrashFill/> */}
+                            <TrashFill/>
                         </a>
                         </div>
                     </td>
