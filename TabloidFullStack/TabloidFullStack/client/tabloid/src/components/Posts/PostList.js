@@ -11,9 +11,9 @@ export const AllPosts = () => {
         getAllApprovedPosts().then(allPosts => setPosts(allPosts));
     };
 
-  const getComments = () => {
-    getAllComments().then((allComments) => setComments(allComments));
-  };
+ // const getComments = () => {
+   // getAllComments().then((allComments) => setComments(allComments));
+  //};
 
   useEffect(() => {
     getPosts();
