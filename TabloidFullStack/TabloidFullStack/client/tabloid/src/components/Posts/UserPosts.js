@@ -35,7 +35,7 @@ export const UserPosts = () => {
                     <th>Author</th>
                     <th>Title</th>
                     <th>Category</th>
-                    <th>Publish Date</th>
+                    <th>Creation Date</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -45,7 +45,7 @@ export const UserPosts = () => {
                             <td>{post.userProfile.fullName}</td>
                             <td>{post.title}</td>
                             <td>{post.category.name}</td>
-                            <td>{post.publishDateTime}</td>
+                            <td>{post.createDateTime}</td>
                     <td>
                         <div className="function-container">
                         <a href={`/posts/post/${post.id}`} className="btn btn-outline-secondary mx-1" title="Details">

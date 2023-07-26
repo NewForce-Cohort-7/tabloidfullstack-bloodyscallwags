@@ -58,7 +58,7 @@ namespace TabloidFullStack.Repositories
                                LEFT JOIN Category c on c.Id = p.CategoryId
                                LEFT JOIN UserType ut ON up.UserTypeId = ut.id
                         WHERE p.UserProfileId = @Id AND p.PublishDateTime < SYSDATETIME()
-                        ORDER BY p.PublishDateTime DESC
+                        ORDER BY p.CreateDateTime DESC
                         ";
 
                     DbUtils.AddParameter(cmd, "@Id", id);
