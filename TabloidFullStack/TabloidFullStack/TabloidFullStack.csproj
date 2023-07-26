@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="client\tabloid\src\components\" />
     <Folder Include="client\tabloid\src\Managers\" />
   </ItemGroup>
 

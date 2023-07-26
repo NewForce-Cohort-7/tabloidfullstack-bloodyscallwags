@@ -28,7 +28,8 @@ const ApplicationViews = () => {
           <Route path="/tag" element= {<TagList />} />
           <Route path="/tag-form" element= {<TagForm />} />
           <Route path="*" element={<p>Whoops, nothing here...</p>} />
-          
+          <Route path="/comment/:id" element={<CommentList />} />
+          <Route path="comment/create/:postId" element={<CommentForm />} />
           <Route path="category/create" element={ <CategoryForm />} />
       </Routes>
     );

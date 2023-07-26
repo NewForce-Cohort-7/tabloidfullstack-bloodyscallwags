@@ -11,10 +11,6 @@ export const AllPosts = () => {
         getAllApprovedPosts().then(allPosts => setPosts(allPosts));
     };
 
- // const getComments = () => {
-   // getAllComments().then((allComments) => setComments(allComments));
-  //};
-
   useEffect(() => {
     getPosts();
    
@@ -47,13 +43,13 @@ export const AllPosts = () => {
                     <td>
                         <div className="function-container">
                         <a href="/" className="btn btn-outline-secondary mx-1" title="Details">
-                            <EyeFill />
+                            {/* <EyeFill /> */}
                         </a>
                         <a href="/" className="btn btn-outline-secondary mx-1" title="Edit">
-                            <PencilFill />
+                            {/* <PencilFill /> */}
                         </a>
                         <a href="/" className="btn btn-outline-secondary mx-1" title="Delete">
-                            <TrashFill/>
+                            {/* <TrashFill/> */}
                         </a>
                         </div>
                     </td>
