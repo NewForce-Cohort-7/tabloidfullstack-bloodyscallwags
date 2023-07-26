@@ -6,5 +6,6 @@ namespace TabloidFullStack.Repositories
     {
         List<Post> GetAllApprovedPosts();
         List<Post> GetPostsByUserId(int id);
+        Post GetPostById(int id);
     }
 }
