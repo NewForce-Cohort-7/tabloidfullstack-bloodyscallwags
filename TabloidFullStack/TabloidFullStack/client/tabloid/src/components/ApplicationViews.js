@@ -10,6 +10,8 @@ import  TagList  from "./tags/TagList";
 import  TagForm  from "./tags/TagForm";
 import  CategoryList  from "./Category/CategoryList";
 import { CategoryForm } from "./Category/CategoryForm";
+import { CommentList } from "./Comment/CommentList";
+import { CommentForm } from "./Comment/CommentForm";
 import { DeactivatedUserList } from "./UserProfile/DeactivatedUserList";
 
 //modified code of ApplicationViews to have different views for routes
@@ -30,6 +32,8 @@ const ApplicationViews = () => {
           <Route path="/tag" element= {<TagList />} />
           <Route path="/tag-form" element= {<TagForm />} />
           <Route path="*" element={<p>Whoops, nothing here...</p>} />
+          <Route path="/comment/:id" element={<CommentList />} />
+          <Route path="comment/create/:id" element={<CommentForm />} />
           <Route path="/deactivatedusers" element={<DeactivatedUserList /> } />
           
           <Route path="category/create" element={ <CategoryForm />} />

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getAllApprovedPosts } from "../../Managers/PostManager";
 import { Table } from "reactstrap";
-import "./Posts.css"
+import "./Posts.css";
 import { EyeFill } from "react-bootstrap-icons";
 import { PencilFill} from "react-bootstrap-icons"
 import { TrashFill} from "react-bootstrap-icons"

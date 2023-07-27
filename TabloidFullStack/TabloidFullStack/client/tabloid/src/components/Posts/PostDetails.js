@@ -4,7 +4,8 @@ import { useParams } from "react-router-dom";
 import "./Posts.css"
 import { Card, CardImg, CardBody } from "reactstrap";
 import { Link } from "react-router-dom";
-
+import { CommentList } from "../Comment/CommentList";
+// import { Button } from "reactstrap";
 
 export const PostDetails = () => {
     const [postDetails, setPostDetails] = useState([]);
@@ -48,6 +49,8 @@ export const PostDetails = () => {
             </div>
           ))}
         </div> */}
+       {/* <Button tag={Link} to={`/comment/create/${postDetails.id}`} className="comment-btn">Add Comment</Button> */}
+        <CommentList />
       </CardBody>
     </Card>
         </div>

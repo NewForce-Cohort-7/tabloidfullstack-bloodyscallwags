@@ -61,6 +61,7 @@ export const UserPosts = () => {
                     </td>
                         </tr>
                     ))}
+                   
             </tbody>
         </Table>
         </div>
