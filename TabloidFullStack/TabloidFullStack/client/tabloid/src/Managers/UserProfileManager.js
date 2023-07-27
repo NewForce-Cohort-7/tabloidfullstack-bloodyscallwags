@@ -1,8 +1,3 @@
-import React from "react";
-
-
-
-
 const apiUrl = "https://localhost:5001";
 
 export const getAllUserProfiles = () => {
@@ -62,6 +57,20 @@ export const deactivateUser = (user) => {
       .then((res) => res.json())
 
 }
+
+//PUT for UserProfileDeactivate.js
+export const activateUser = (user) => {
+  return fetch(`${apiUrl}/api/userprofile/${user.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  })
+      .then((res) => res.json())
+
+}
+
 
 // return (
 //   <UserProfileContext.Provider value={{ isLoggedIn, login, logout, register,  }}>
